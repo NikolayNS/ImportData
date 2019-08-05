@@ -4,9 +4,10 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class ConnectSQLTest {
+public class ConnectorTest {
 
     @Test
     public void getDBConnection() {
+
     }
 }

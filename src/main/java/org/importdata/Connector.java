@@ -7,27 +7,23 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 /**
- *
+ * Реализация класса подключения к БД
  */
 
-public class ConnectSQL{
+public class Connector {
 
-    private static final Logger LOGGER = Logger.getLogger(ConnectSQL.class);
+    private static final Logger LOGGER = Logger.getLogger(Connector.class);
 
-    public ConnectSQL() {
+    public Connector() {
     }
 
-    protected Connection getDBConnection(String dbDriver, String dbAddress, String dbUser, String dbPassword) {
+    public Connection getDBConnection(String dbDriver, String dbAddress, String dbUser, String dbPassword) {
         Connection dbConnection = null;
         try {
-            LOGGER.info("Установка соединения с СУБД");
             Class.forName(dbDriver);
             dbConnection = DriverManager.getConnection(dbAddress, dbUser, dbPassword);
-            LOGGER.info("Подключение успешно");
-        } catch (ClassNotFoundException e) {
-            LOGGER.error(e);
-        } catch (SQLException e) {
-            LOGGER.error(e);
+        } catch (ClassNotFoundException | SQLException e) {
+            LOGGER.error(e + "Ошибка подключения к СУБД");
         }
         return dbConnection;
     }
